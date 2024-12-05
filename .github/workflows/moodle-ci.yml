@@ -25,6 +25,11 @@ on:
         default: false
         required: false
         type: boolean
+      requires-block-plugin:
+        description: 'Specifies whether the Opencast Block plugin is required.'
+        default: false
+        required: false
+        type: boolean
       branch-mod-plugin:
         description: 'Specifies the branch of the Opencast Activity plugin.'
         default: ''
@@ -37,6 +42,7 @@ env:
   workflow_branch_name: ${{ github.head_ref || github.ref_name }}
   branch_tool_plugin: ${{ inputs.branch-tool-plugin || (github.head_ref || github.ref_name) }}
   branch_mod_plugin: ${{ inputs.branch-mod-plugin || (github.head_ref || github.ref_name) }}
+  branch_block_plugin: ${{ inputs.branch-block-plugin || (github.head_ref || github.ref_name) }}
   is_moodle_plugin_ci_workflow: 1
 
 ########################################################################################################################
@@ -139,6 +145,10 @@ jobs:
       - name: Install activity plugin
         if: ${{ inputs.requires-mod-plugin == true }}
         run: moodle-plugin-ci add-plugin --branch "${branch_mod_plugin}" Opencast-Moodle/moodle-mod_opencast
+
+      - name: Install block plugin
+        if: ${{ inputs.requires-block-plugin == true }}
+        run: moodle-plugin-ci add-plugin --branch "${branch_block_plugin}" Opencast-Moodle/moodle-block_opencast
 
       - name: Install moodle-plugin-ci
         run: moodle-plugin-ci install --plugin ./plugin --db-host=127.0.0.1 --no-init
@@ -265,6 +275,10 @@ jobs:
       - name: Install activity plugin
         if: ${{ inputs.requires-mod-plugin == true }}
         run: moodle-plugin-ci add-plugin --branch "${branch_mod_plugin}" Opencast-Moodle/moodle-mod_opencast
+
+      - name: Install block plugin
+        if: ${{ inputs.requires-block-plugin == true }}
+        run: moodle-plugin-ci add-plugin --branch "${branch_block_plugin}" Opencast-Moodle/moodle-block_opencast
 
       - name: Install moodle-plugin-ci
         run: |

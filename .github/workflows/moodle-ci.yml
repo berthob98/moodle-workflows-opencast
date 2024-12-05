@@ -25,14 +25,19 @@ on:
         default: false
         required: false
         type: boolean
+      branch-mod-plugin:
+        description: 'Specifies the branch of the Opencast Activity plugin.'
+        default: ''
+        required: false
+        type: string
       requires-block-plugin:
         description: 'Specifies whether the Opencast Block plugin is required.'
         default: false
         required: false
         type: boolean
-      branch-mod-plugin:
-        description: 'Specifies the branch of the Opencast Activity plugin.'
-        default: ''
+      branch-block-plugin:
+        description: 'Specifies the branch of the Opencast Block plugin.'
+        default: 'main'
         required: false
         type: string
 

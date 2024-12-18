@@ -40,6 +40,11 @@ on:
         default: 'main'
         required: false
         type: string
+      branch-opencast-docker-default:
+        description: 'Default opencast docker branch to control the Opencast version, in case it is not provided.'
+        default: '16.7' # As of Dec. 2024 the plugins are OC 16 compatible
+        required: false
+        type: string
 
 ########################################################################################################################
 
@@ -223,7 +228,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: opencast/opencast-docker
-          ref: ${{ matrix.opencast }}
+          ref: ${{ matrix.opencast || inputs.branch-opencast-docker-default }}
           path: opencast-docker
 
       - name: Start Opencast

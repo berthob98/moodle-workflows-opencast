@@ -50,9 +50,9 @@ on:
 
 env:
   workflow_branch_name: ${{ github.head_ref || github.ref_name }}
-  branch_tool_plugin: ${{ inputs.branch-tool-plugin || (github.head_ref || github.ref_name) }}
-  branch_mod_plugin: ${{ inputs.branch-mod-plugin || (github.head_ref || github.ref_name) }}
-  branch_block_plugin: ${{ inputs.branch-block-plugin || (github.head_ref || github.ref_name) }}
+  branch_tool_plugin: 'develop_backup_restore'
+  branch_mod_plugin: 'r11111_MOD_move_block_settings'
+  branch_block_plugin: 'develop_backup_restore'
   is_moodle_plugin_ci_workflow: 1
 
 ########################################################################################################################
@@ -148,15 +148,15 @@ jobs:
 
       - name: Install tool plugin
         if: ${{ inputs.requires-tool-plugin == true }}
-        run: moodle-plugin-ci add-plugin --branch "${branch_tool_plugin}" Opencast-Moodle/moodle-tool_opencast
+        run: moodle-plugin-ci add-plugin --branch "${branch_tool_plugin}" berthob98/moodle-tool_opencast
 
       - name: Install activity plugin
         if: ${{ inputs.requires-mod-plugin == true }}
-        run: moodle-plugin-ci add-plugin --branch "${branch_mod_plugin}" Opencast-Moodle/moodle-mod_opencast
+        run: moodle-plugin-ci add-plugin --branch "${branch_mod_plugin}" berthob98/moodle-mod_opencast
 
       - name: Install block plugin
         if: ${{ inputs.requires-block-plugin == true }}
-        run: moodle-plugin-ci add-plugin --branch "${branch_block_plugin}" Opencast-Moodle/moodle-block_opencast
+        run: moodle-plugin-ci add-plugin --branch "${branch_block_plugin}" berthob98/moodle-block_opencast
 
       - name: Install moodle-plugin-ci
         run: moodle-plugin-ci install --plugin ./plugin --db-host=127.0.0.1 --no-init
@@ -276,15 +276,15 @@ jobs:
 
       - name: Install tool plugin
         if: ${{ inputs.requires-tool-plugin == true }}
-        run: moodle-plugin-ci add-plugin --branch "${branch_tool_plugin}" Opencast-Moodle/moodle-tool_opencast
+        run: moodle-plugin-ci add-plugin --branch "${branch_tool_plugin}" berthob98/moodle-tool_opencast
 
       - name: Install activity plugin
         if: ${{ inputs.requires-mod-plugin == true }}
-        run: moodle-plugin-ci add-plugin --branch "${branch_mod_plugin}" Opencast-Moodle/moodle-mod_opencast
+        run: moodle-plugin-ci add-plugin --branch "${branch_mod_plugin}" berthob98/moodle-mod_opencast
 
       - name: Install block plugin
         if: ${{ inputs.requires-block-plugin == true }}
-        run: moodle-plugin-ci add-plugin --branch "${branch_block_plugin}" Opencast-Moodle/moodle-block_opencast
+        run: moodle-plugin-ci add-plugin --branch "${branch_block_plugin}" berthob98/moodle-block_opencast
 
       - name: Install moodle-plugin-ci
         run: |

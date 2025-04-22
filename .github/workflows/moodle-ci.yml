@@ -308,7 +308,7 @@ jobs:
       # so it can be downloaded and inspected. You don't need this step if you
       # are not running Behat test. Artifact will be retained for 7 days.
       - name: Upload Behat Faildump
-        if: ${{ failure() && steps.behat.outcome == 'failure' }}
+        if: ${{ failure() }}
         uses: actions/upload-artifact@v4
         with:
           name: Behat Faildump (${{ join(matrix.*, ', ') }})

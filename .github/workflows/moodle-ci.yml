@@ -300,6 +300,7 @@ jobs:
         run: moodle-plugin-ci phpunit
 
       - name: Behat features
+        id: behat
         if: ${{ always() }}
         run: moodle-plugin-ci behat --auto-rerun 1
 
